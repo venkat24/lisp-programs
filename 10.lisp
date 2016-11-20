@@ -1,0 +1,10 @@
+(define (deldupe e)
+  (if (null? e) '()
+      (cons (car e) (deldupe (my-filter (lambda (x) (not (equal? x (car e)))) 
+                                    (cdr e))))))
+(define (my-filter pred ls) 
+  (cond ((null? ls) '())
+        ((pred (car ls)) (cons (car ls) (my-filter pred (cdr ls))))
+        (else (my-filter pred (cdr ls)))))
+
+(display (deldupe '(2 2 4 3 3 5 6 5 5 7 7 8 6 1 3 2 4)))
